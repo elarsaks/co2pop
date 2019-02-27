@@ -4,7 +4,7 @@ module.exports = {
     connection: {
       host : '127.0.0.1',
       user : 'postgres',
-      password : 'Code4Fun',
+      password : 'your_password',
       database : 'co2pop'
     },
   },
