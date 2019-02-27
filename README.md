@@ -58,6 +58,16 @@ This project serves as an example of my current skills in JavaScript. It is a fu
 - **Database**
     - Open Postgre SQL in your prefered way (PgAdmin / Terminal)
     - Create a database named 'co2pop'
+    
+ <table>
+  <tbody>
+    <tr>
+      <td>
+         <img src="https://s3.eu-north-1.amazonaws.com/co2pop/db.PNG" />
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 - **Back-end**
     - Switch to `back-end` directory `cd co2pop/back`
