@@ -98,7 +98,7 @@ This project serves as an example of my current skills in JavaScript. It is a fu
     </tr>
     <tr>
       <td  colspan="2">
-        <img alt="Landing" src="https://s3.eu-north-1.amazonaws.com/co2pop/Line.PNG" />
+        <img alt="Landing" src="https://co2pop.s3.eu-north-1.amazonaws.com/line-chart.PNG" />
       </td>
     </tr>
     <tr>
@@ -106,7 +106,7 @@ This project serves as an example of my current skills in JavaScript. It is a fu
     </tr>
     <tr>
       <td  colspan="2">
-        <img alt="Bar-chart" src="https://s3.eu-north-1.amazonaws.com/co2pop/Bar.PNG" />
+        <img alt="Bar-chart" src="https://co2pop.s3.eu-north-1.amazonaws.com/bar-chart.PNG" />
       </td>
     </tr>
        <tr>
@@ -114,7 +114,7 @@ This project serves as an example of my current skills in JavaScript. It is a fu
     </tr>
     <tr>
        <td  colspan="2">
-        <img alt="Pie-chart" src="https://s3.eu-north-1.amazonaws.com/co2pop/Pie.PNG" />
+        <img alt="Pie-chart" src="https://co2pop.s3.eu-north-1.amazonaws.com/pie-chart.PNG" />
       </td>
     </tr>
     <tr>
@@ -122,10 +122,10 @@ This project serves as an example of my current skills in JavaScript. It is a fu
     </tr>
     <tr>
       <td>
-        <img alt="Mobile" src="https://s3.eu-north-1.amazonaws.com/co2pop/s5-1.png" />
+        <img alt="Mobile" src="https://co2pop.s3.eu-north-1.amazonaws.com/phone1.PNG" />
       </td>
       <td>
-        <img alt="Mobile" src="https://s3.eu-north-1.amazonaws.com/co2pop/S5-2.png" />
+        <img alt="Mobile" src="https://co2pop.s3.eu-north-1.amazonaws.com/phone3.PNG" />
       </td>
     </tr>
   </tbody>
