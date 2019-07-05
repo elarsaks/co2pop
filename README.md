@@ -2,7 +2,7 @@
 
 This project serves as an example of my current skills in JavaScript. It is a full-stack JavaScript application, displaying world population and emissions data. The project uses React Redux on the front end side and Node JS on the back end. Node Express server API fetches data from World Bank API and uses Knex JS library to feed it to the Postgre SQL database,
 
-<img src="https://s3.eu-north-1.amazonaws.com/co2pop/b.png" />
+<img src="https://co2pop.s3.eu-north-1.amazonaws.com/Untitled+Diagram.png" />
 
 ## Core Structure
     co2pop
