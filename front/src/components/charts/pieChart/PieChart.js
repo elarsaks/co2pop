@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {PieChart, Pie, Cell } from 'recharts';
 import PieChartMenu from './PieChartMenu.js';
 
-
 // Some CSS
 const styles = {
   container:{
@@ -13,8 +12,6 @@ const styles = {
     textAlign: 'center'
   },
 }
-
-
   // Pie-chart Settings by re-charts
   const COLORS = ['#00897b', '#039be5', '#f57c00', '#546e7a', '#eeff41', '#7c4dff', '#f50057'];
   const RADIAN = Math.PI / 180;
@@ -31,9 +28,7 @@ const styles = {
     );
   };
 
-
 class SimplePieChart extends Component {
-
   state = {
     yearData: this.props.data.store.chartData.PieChart,
   };
@@ -63,11 +58,9 @@ class SimplePieChart extends Component {
             </Pie>
           </PieChart>
 
-          {/* Custom made legend, because Pie-charts code is buggy by re-charts */}
           <div style={styles.container} >
             {data.map((item,i) => <b key={i} style={{ color: COLORS[i] }} > { item.area }, </b>)}
           </div>
-
         <PieChartMenu/>
       </div>
     );

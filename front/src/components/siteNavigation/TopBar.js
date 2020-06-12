@@ -27,7 +27,6 @@ const styles = {
 };
 
 class TopBar extends Component{
-
   render(){
     const { classes } = this.props;
     return (
@@ -61,7 +60,6 @@ class TopBar extends Component{
 TopBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
-
 
 /* Takes state from reducer and passes it on to App. */
 const mapStateToProps = (state) => {

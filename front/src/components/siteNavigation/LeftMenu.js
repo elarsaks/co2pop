@@ -26,8 +26,6 @@ const menuButtons = [
 ];
 
 class LeftMenu extends React.Component {
-
-
   state = {
     pages: '',
   }
@@ -87,7 +85,6 @@ class LeftMenu extends React.Component {
     );
   }
 }
-
 
 /* Takes state from reducer and passes it on to App. */
 const mapStateToProps = (state) => {

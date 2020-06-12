@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import { lineChart } from '../../../redux/Actions';
 import lineRoutes from '../../../routes/LineRoutes.js';
 
-
 // Some CSS
 const styles = theme => ({
   root: {
@@ -40,8 +39,6 @@ class ChartMenu extends React.Component {
     };
   }
 
-
-
   // Create a list of menu-items and save them into state
   selector(pos, items){
     return items()
@@ -57,7 +54,6 @@ class ChartMenu extends React.Component {
   componentDidMount() {
     this.selector('firstSelector', lineRoutes.regions);
   }
-
 
   // Update the menu
   handleChange = async (event) => {
@@ -76,7 +72,6 @@ class ChartMenu extends React.Component {
     return (
       <div >
         <form className={classes.root} autoComplete="off">
-  {/*  ----------------------------------------------------------------------------- */}
           <FormControl className={classes.formControl} >
             <Select
               value={this.state.firstSelected}
@@ -86,8 +81,7 @@ class ChartMenu extends React.Component {
             {this.state.firstSelector}
             </Select>
           </FormControl>
-
-  {/*  ----------------------------------------------------------------------------- */}
+          
           <FormControl className={classes.formControl}>
             <Select
               value={this.state.secondSelected}

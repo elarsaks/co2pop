@@ -49,10 +49,8 @@ const sliderStyles = {
 }
 
 class PieChartMenu extends React.Component {
-
   constructor(props) {
     super(props);
-
     this.state = {
       firstSelected:'',
       secondSelected: '',
@@ -106,7 +104,6 @@ class PieChartMenu extends React.Component {
     await this.getData(value)
   };
 
-
   render() {
     const { classes } = this.props;
     const { min, max, value, } = this.state;
@@ -124,7 +121,6 @@ class PieChartMenu extends React.Component {
             disabled={(!this.state.slider)}
           />
         </div>
-    {/*  -------------------------------------------------------------------- */}
         <form className={classes.root} autoComplete="off">
           <FormControl className={classes.formControl} >
             <Select
@@ -135,7 +131,7 @@ class PieChartMenu extends React.Component {
             {this.state.firstSelector}
             </Select>
           </FormControl>
-    {/*  -------------------------------------------------------------------- */}
+          
           <FormControl className={classes.formControl}>
             <Select
               value={this.state.secondSelected}
