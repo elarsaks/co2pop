@@ -13,7 +13,7 @@
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "fs": "0.0.1-security",
-    "knex": "^0.16.3",
+    "knex": "^0.19.5",
     "node-cron": "^2.0.3",
     "node-fetch": "^2.3.0",
     "nodemon": "^1.18.9",
