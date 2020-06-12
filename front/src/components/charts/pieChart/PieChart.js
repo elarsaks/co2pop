@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import {PieChart, Pie, Cell } from 'recharts';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 import PieChartMenu from './PieChartMenu.js';
 
 
@@ -56,7 +52,6 @@ class SimplePieChart extends Component {
             <Pie {...this.props.PieChart.Pie}
               data={this.state.yearData}
               labelLine={false}
-              // Re-charts own library is buggy
               dataKey={'value'}
               label={renderCustomizedLabel}
               isAnimationActive={false}

@@ -7,7 +7,6 @@ import Select from '@material-ui/core/Select';
 import { connect } from 'react-redux';
 import { lineChart } from '../../../redux/Actions';
 import lineRoutes from '../../../routes/LineRoutes.js';
-import Button from '@material-ui/core/Button';
 
 
 // Some CSS
