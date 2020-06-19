@@ -14,7 +14,7 @@ const countries = require('./controllers/countries.js');
 const data = require('./controllers/data.js');
 
 // Configs
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 3001;
 const config = require('./knexfile.js');
 const db = require('knex')(config.development);
 const app = express();
@@ -22,7 +22,7 @@ app.use(bodyParser.json());
 app.use(cors());
 "use strict";
 
-
+/*
 // Setup Database
 ( function setUpTables() {
   setTimeout( () => { dataTable.drop(db) }, 1);
@@ -42,6 +42,7 @@ cron.schedule('* * 27 * *', function() {
   setTimeout( () => { dataTable.insertPop(db) }, 1000);
   setTimeout( () => { dataTable.insertEm(db) }, 9000);
 });
+*/
 
 // Provide information about API links
 app.get('/', (req, res) => {
