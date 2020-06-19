@@ -5,17 +5,15 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import { connect } from 'react-redux';
-import { pieChart } from '../../../redux/Actions';
-import pieRoutes from '../../../routes/PieRoutes.js';
-import Slider from '@material-ui/lab/Slider';
+import { lineChart } from '../../../redux/Actions';
+import lineRoutes from '../../../routes/LineRoutes.js';
 
-// Menu Selectors CSS
 const styles = theme => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: "center",
-    padding: '30px',
+    marginTop: '10px',
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -27,29 +25,7 @@ const styles = theme => ({
   },
 });
 
-// Slider CSS
-const sliderStyles = {
-  container:{
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    width: '90%'
-  },
-  sliderContainer: {
-    width: '33%',
-    textAlign: 'center',
-    marginLeft: 'auto',
-    marginRight: 'auto',
-    marginTop: '10px',
-    marginBottom: '10px',
-    overFlow: 'hidden'
-  },
-  slider: {
-    padding: '22px 0px',
-  },
-}
-
-class PieChartMenu extends React.Component {
-
+class ChartMenu extends React.Component {
   constructor(props) {
     super(props);
 
@@ -58,11 +34,6 @@ class PieChartMenu extends React.Component {
       secondSelected: '',
       firstSelector: [],
       secondSelector: [],
-      min: 1960,
-      max: new Date().getFullYear(),
-      value: 1960,
-      yearData: [],
-      slider: false,
     };
   }
 
@@ -77,54 +48,27 @@ class PieChartMenu extends React.Component {
     })
   }
 
-  // Fetch and pass data to Pie-Chart
-  getData(value){
-    pieRoutes.getPie(this.state.firstSelected, this.state.secondSelected, value)
-    .then(data => { this.props.pieChart(data) })
-  }
-
-  // Set the first selector when the page loads
+  // Set the initial menu when the page loads
   componentDidMount() {
-    this.selector('firstSelector', pieRoutes.groups);
+    this.selector('firstSelector', lineRoutes.regions);
   }
 
   // Update the menu
   handleChange = async (event) => {
     await this.setState({ [event.target.name]: event.target.value })
-    await this.selector('secondSelector', pieRoutes.categories)
+    await this.selector('secondSelector', lineRoutes.name(this.state.firstSelected))
 
-    // Unlock Slider and get data
+    // Fetch data
     if(!(!this.state.secondSelected)) {
-      this.setState({slider: true})
-      this.getData(this.state.value)
+      lineRoutes.getData(this.state.secondSelected)
+      .then(data => { this.props.lineChart(data) })
     }
   };
 
-  // Update state and fetch data
-  sliderChange = async (event, value) => {
-    await this.setState({value: value})
-    await this.getData(value)
-  };
-
-
   render() {
     const { classes } = this.props;
-    const { min, max, value, } = this.state;
     return (
       <div >
-        <div style={sliderStyles.sliderContainer}>
-        <h3> Year: {value} </h3>
-          <Slider
-            style={sliderStyles.slider}
-            value={value}
-            min={min}
-            max={max}
-            step={1}
-            onChange={this.sliderChange}
-            disabled={(!this.state.slider)}
-          />
-        </div>
-    {/*  -------------------------------------------------------------------- */}
         <form className={classes.root} autoComplete="off">
           <FormControl className={classes.formControl} >
             <Select
@@ -135,7 +79,7 @@ class PieChartMenu extends React.Component {
             {this.state.firstSelector}
             </Select>
           </FormControl>
-    {/*  -------------------------------------------------------------------- */}
+
           <FormControl className={classes.formControl}>
             <Select
               value={this.state.secondSelected}
@@ -146,12 +90,13 @@ class PieChartMenu extends React.Component {
             {this.state.secondSelector}
             </Select>
           </FormControl>
-      </form>
-    </div>
-  )}
+        </form>
+      </div>
+    );
+  }
 }
 
-PieChartMenu.propTypes = {
+ChartMenu.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
@@ -165,8 +110,8 @@ const mapStateToProps = (state) => {
 /* Listens to the changes in state and passes it on to reducers */
 const mapDispatchToProps = (dispatch ) => {
   return{
-    pieChart: (data) => dispatch(pieChart(data)),
+    lineChart: (data) => dispatch(lineChart(data))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(PieChartMenu));
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(ChartMenu));

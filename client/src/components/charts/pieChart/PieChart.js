@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
 import {PieChart, Pie, Cell } from 'recharts';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
-import Slider from '@material-ui/lab/Slider';
 import PieChartMenu from './PieChartMenu.js';
 
-
-// Some CSS
 const styles = {
   container:{
     marginLeft: 'auto',
@@ -17,7 +11,6 @@ const styles = {
     textAlign: 'center'
   },
 }
-
 
   // Pie-chart Settings by re-charts
   const COLORS = ['#00897b', '#039be5', '#f57c00', '#546e7a', '#eeff41', '#7c4dff', '#f50057'];
@@ -34,7 +27,6 @@ const styles = {
       </text>
     );
   };
-
 
 class SimplePieChart extends Component {
 

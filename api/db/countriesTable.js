@@ -2,7 +2,6 @@ const knex = require('knex');
 const fetch = require('node-fetch');
 const parseString = require('xml2js').parseString;
 
-
 // _____________________________________________________________________________
 // CREATE COUNTRIES TABLE
 //¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
@@ -23,7 +22,6 @@ exports.drop = (db, Promise) => {
   .then(console.log('Table "countries" was dropped'))
   .catch(error => console.log(error))
 }
-
 
 // _____________________________________________________________________________
 // INSERT DATA INTO THE COUNTRIES TABLE

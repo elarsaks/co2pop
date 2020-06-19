@@ -43,8 +43,6 @@ cron.schedule('* * 27 * *', function() {
   setTimeout( () => { dataTable.insertEm(db) }, 9000);
 });
 
-
-
 // Provide information about API links
 app.get('/', (req, res) => {
   res.send({
@@ -83,7 +81,6 @@ app.get('/piedata/:group/:indicator/:year', (req, res)=> {data.getPieData(req, r
 
 // Line-chart
 app.get('/data/:country_code', (req, res)=> {data.getDataByCountries(req, res, db)});
-
 
 app.listen(port, function() {
   console.log("listening on port:", port);

@@ -1,4 +1,3 @@
-
 // get all from data ( Not used )
 const getAll = (req, res, db) => {
   db.select("*").table('data')
@@ -7,7 +6,6 @@ const getAll = (req, res, db) => {
   })
   .catch(err => res.status(400).json('Error getting countries'))
 }
-
 
 // get Data by single country (Used for Line-chart)
 const getDataByCountries = (req, res, db) => {
@@ -21,7 +19,6 @@ const getDataByCountries = (req, res, db) => {
   })
   .catch(err => res.status(400).json(err))
 }
-
 
 // get Region data by year (Used for Bar-chart)
 const getRegionDataByYear = (req, res, db) => {
@@ -50,7 +47,6 @@ const getPieData = (req, res, db) => {
   })
   .catch(err => res.status(400).json(err))
 }
-
 
 module.exports = {
   getDataByCountries,

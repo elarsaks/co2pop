@@ -1,4 +1,3 @@
-
 // get all from countries ( Not used )
 const getAll = (req, res, db) => {
   db.select("*").table('countries')
@@ -25,7 +24,6 @@ const getCountriesByRegion = (req, res, db) => {
   .then(data =>  { res.send(data) })
   .catch(err => res.status(400).json('Error getting countries'))
 }
-
 
 module.exports = {
   getAll,
