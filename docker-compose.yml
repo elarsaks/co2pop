@@ -1,17 +1,21 @@
 version: "3"
 services:
-  api:
-    container_name: "api"
-    build: ./api/
-    ports:
-      - "3001:3001"
   pg:
     image: "postgres:12"
     container_name: "postgres"
     environment:
       POSTGRES_DB: "db"
       POSTGRES_HOST_AUTH_METHOD: "trust"
+      #POSTGRES_PASSWORD: "password"
+      #POSTGRES_USER: "postgres"
+      #POSTGRES_DB: "co2pop"
     ports:
         - "5432:5432"
     volumes:
-        - ./pg/db_data:/var/lib/postgresql/data
+        - ./data/db_data:/var/lib/postgresql/data
+        - ./data/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+  api:
+    container_name: "api"
+    build: ./api/
+    ports:
+        - "3001:3001"

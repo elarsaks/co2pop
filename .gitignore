@@ -1,2 +1,5 @@
 dist
 node_modules
+
+#DB created files
+data/db_data
