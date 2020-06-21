@@ -1,21 +1,31 @@
-version: "3"
+version: "3.5"
+# network ? 
 services:
   pg:
-    image: "postgres:12"
-    container_name: "postgres"
+    build:
+      context: ./data
     environment:
-      POSTGRES_DB: "db"
-      POSTGRES_HOST_AUTH_METHOD: "trust"
-      #POSTGRES_PASSWORD: "password"
-      #POSTGRES_USER: "postgres"
-      #POSTGRES_DB: "co2pop"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_USER: "postgres"
+      POSTGRES_DB: "co2pop"
     ports:
         - "5432:5432"
     volumes:
-        - ./data/db_data:/var/lib/postgresql/data
-        - ./data/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+        - "postgres_data:/var/lib/postgresql/data"
+        - "./data/add_db_and_user.sql :/docker-entrypoint-initdb.d/"
   api:
     container_name: "api"
     build: ./api/
     ports:
         - "3001:3001"
+    depends_on:
+      - pg
+volumes:
+  postgres_data: 
+
+
+# Add Docker Network.
+# Fix connection between API and DB. 
+
+      #POSTGRES_DB: "db"
+      #POSTGRES_HOST_AUTH_METHOD: "trust"
