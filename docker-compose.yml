@@ -1,5 +1,4 @@
 version: "3.5"
-# network ? 
 services:
   pg:
     build:
@@ -12,7 +11,7 @@ services:
         - "5432:5432"
     volumes:
         - "postgres_data:/var/lib/postgresql/data"
-        - "./data/add_db_and_user.sql :/docker-entrypoint-initdb.d/"
+       # - "./data/sql/init.sql:/docker-entrypoint-initdb.d/init.sql"
   api:
     container_name: "api"
     build: ./api/
@@ -22,10 +21,3 @@ services:
       - pg
 volumes:
   postgres_data: 
-
-
-# Add Docker Network.
-# Fix connection between API and DB. 
-
-      #POSTGRES_DB: "db"
-      #POSTGRES_HOST_AUTH_METHOD: "trust"
