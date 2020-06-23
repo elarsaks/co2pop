@@ -18,9 +18,20 @@ const port = process.env.PORT || 3001;
 const config = require('./knexfile.js');
 const db = require('knex')(config.development);
 const app = express();
+
+/* NEW STUFF */
+const router = require('./src/router/index.js')
+
 app.use(bodyParser.json());
 app.use(cors());
 "use strict";
+
+app.use(router)
+
+
+app.listen(port, function() {
+  console.log("listening on port:", port);
+})
 
 /*
 // Setup Database
@@ -42,7 +53,6 @@ cron.schedule('* * 27 * *', function() {
   setTimeout( () => { dataTable.insertPop(db) }, 1000);
   setTimeout( () => { dataTable.insertEm(db) }, 9000);
 });
-*/
 
 // Provide information about API links
 app.get('/', (req, res) => {
@@ -61,6 +71,7 @@ app.get('/', (req, res) => {
     },
   });
 })
+
 
 // Get all from countries
 app.get('/countries/', (req, res)=> {countries.getAll(req, res, db)});
@@ -83,6 +94,4 @@ app.get('/piedata/:group/:indicator/:year', (req, res)=> {data.getPieData(req, r
 // Line-chart
 app.get('/data/:country_code', (req, res)=> {data.getDataByCountries(req, res, db)});
 
-app.listen(port, function() {
-  console.log("listening on port:", port);
-})
+*/
