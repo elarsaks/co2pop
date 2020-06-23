@@ -7,15 +7,11 @@ const parseString = require('xml2js').parseString;
 const cron = require("node-cron");
 const fs = require("fs");
 
-// Local imports
-const countriesTable = require('./db/countriesTable.js');
-const dataTable = require('./db/dataTable.js');
-const countries = require('./controllers/countries.js');
-const data = require('./controllers/data.js');
+
 
 // Configs
 const port = process.env.PORT || 3001;
-const config = require('./knexfile.js');
+const config = require('./src/repository/knexfile.js');
 const db = require('knex')(config.development);
 const app = express();
 
@@ -34,6 +30,13 @@ app.listen(port, function() {
 })
 
 /*
+// Local imports
+const countriesTable = require('./db/countriesTable.js');
+const dataTable = require('./db/dataTable.js');
+const countries = require('./src/repository/countries.js');
+const data = require('./src/repository/data.js');
+
+
 // Setup Database
 ( function setUpTables() {
   setTimeout( () => { dataTable.drop(db) }, 1);

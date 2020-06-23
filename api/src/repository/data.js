@@ -1,9 +1,8 @@
+
 // get all from data ( Not used )
 const getAll = (req, res, db) => {
   db.select("*").table('data')
-  .then(function(data) {
-    res.send(data)
-  })
+  .then(data => res.send(data))
   .catch(err => res.status(400).json('Error getting countries'))
 }
 
@@ -14,9 +13,7 @@ const getDataByCountries = (req, res, db) => {
   .from('countries')
   .rightOuterJoin('data', 'countries.country_code', 'data.country_code',)
   .orderBy('data.year')
-  .then(data =>  {
-    res.send(data)
-  })
+  .then(data => res.send(data))
   .catch(err => res.status(400).json(err))
 }
 
@@ -28,9 +25,7 @@ const getRegionDataByYear = (req, res, db) => {
   .rightOuterJoin('data', 'countries.country_code', 'data.country_code',)
   .groupBy('region', 'data.year', )
   .orderBy('region')
-  .then(data =>  {
-    res.send(data)
-  })
+  .then(data => res.send(data))
   .catch(err => res.status(400).json(err))
 }
 
@@ -42,9 +37,7 @@ const getPieData = (req, res, db) => {
   .rightOuterJoin('data', 'countries.country_code', 'data.country_code',)
   .groupBy(req.params.group, 'data.year', )
   .orderBy(req.params.group, 'asc')
-  .then(data =>  {
-    res.send(data)
-  })
+  .then(data => res.send(data))
   .catch(err => res.status(400).json(err))
 }
 

@@ -1,15 +1,17 @@
-// Add imports
+const countries = require('../repository/countries.js');
+const config = require('../repository/knexfile.js');
+const db = require('knex')(config.development);
 
 const getCountries = (req, res) => {
-  return res.status(200).json('No Countries yet!')
+  return countries.getAll(req, res, db)
 }
 
 const getRegions = (req, res) => {
-  return res.status(200).json('No Countries yet!')
+  return countries.getRegions(req, res, db)
 }
 
 const getCountriesByRegion = (req, res) => {
-  return res.status(200).json('No Countries yet!')
+  return countries.getCountriesByRegion(req, res, db)
 }
 
 module.exports = {

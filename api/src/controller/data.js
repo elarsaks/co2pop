@@ -1,24 +1,26 @@
-// Add imports
+const data = require('../repository/data.js');
+const config = require('../repository/knexfile.js');
+const db = require('knex')(config.development);
 
 const getAll = (req, res) => {
-    return res.status(200).json('No Data yet!')
-}
-  
-const getRegionDataByYear = (req, res) => {
-    return res.status(200).json('No Data yet!')
-}
-
-const getPieData = (req, res) => {
-    return res.status(200).json('No Data yet!')
+    return data.getAll(req, res, db)
 }
 
 const getDataByCountries = (req, res) => {
-    return res.status(200).json('No Data yet!')
+    return data.getDataByCountries(req, res, db)
+}
+  
+const getRegionDataByYear = (req, res) => {
+    return data.getRegionDataByYear(req, res, db)
+}
+
+const getPieData = (req, res) => {
+    return data.getPieData(req, res, db)
 }
   
 module.exports = {
     getAll,
+    getDataByCountries,
     getRegionDataByYear,
     getPieData,
-    getDataByCountries,
 }
