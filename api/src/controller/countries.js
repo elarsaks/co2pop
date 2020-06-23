@@ -1,5 +1,5 @@
 const countries = require('../repository/countries.js');
-const config = require('../repository/knexfile.js');
+const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
 const getCountries = (req, res) => {

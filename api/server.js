@@ -7,11 +7,11 @@ const parseString = require('xml2js').parseString;
 const cron = require("node-cron");
 const fs = require("fs");
 
-
+const countriesTable = require('./db/countriesTable.js');
 
 // Configs
 const port = process.env.PORT || 3001;
-const config = require('./src/repository/knexfile.js');
+const config = require('./src/config/knexfile.js');
 const db = require('knex')(config.development);
 const app = express();
 
@@ -23,6 +23,8 @@ app.use(cors());
 "use strict";
 
 app.use(router)
+
+countriesTable.insert(db)
 
 
 app.listen(port, function() {

@@ -1,5 +1,5 @@
 const data = require('../repository/data.js');
-const config = require('../repository/knexfile.js');
+const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
 const getAll = (req, res) => {
