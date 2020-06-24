@@ -3,7 +3,7 @@
 const getAll = (req, res, db) => {
   db.select("*").table('countries')
   .then(countries => res.send(countries))
-  .catch(err => res.status(400).json('Error getting countries'))
+  .catch(err => res.status(400).json(err))
 }
 
 // Get regions list (Used for: Line-Chart Menu)

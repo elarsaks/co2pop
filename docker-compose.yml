@@ -1,22 +1,43 @@
 version: "3.5"
+networks:
+  #frontend:
+  #  name: co2pop_frontend
+  #  driver: overlay
+  backend: 
+    name: co2pop_backend
 services:
+  api:
+    container_name: api
+    build: ./api/
+    depends_on:
+      - pg
+    links: 
+      - pg
+    environment: 
+      DB_HOST: pg
+      DB_USER: postgres
+      DB_PASS: password
+      DATABASE_URL: postgres://postgres:password@pg:5432/co2pop
+    ports:
+      - 3001:3001
+    networks:
+      - backend
+     # - frontend
+
   pg:
     build:
       context: ./data
     environment:
-      POSTGRES_PASSWORD: "password"
-      POSTGRES_USER: "postgres"
-      POSTGRES_DB: "co2pop"
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: co2pop
     ports:
-        - "5432:5432"
+        - 5432:5432
+    networks:
+      - backend
     volumes:
-        - "postgres_data:/var/lib/postgresql/data"
-  api:
-    container_name: "api"
-    build: ./api/
-    ports:
-        - "3001:3001"
-    depends_on:
-      - pg
+        - postgres_data:/var/lib/postgresql/data
+    
+
 volumes:
   postgres_data: 

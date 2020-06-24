@@ -54,7 +54,8 @@ return  fetch('http://api.worldbank.org/v2/countries?per_page=304')
           })
           .then(response => {
             console.log('Added: ' + country_name)
-          });
+          })
+          .catch(err =>  console.log(err))
         }
       }
     })
