@@ -2,16 +2,16 @@ const countries = require('../repository/countries.js');
 const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
-const getCountries = (req, res) => {
-  return countries.getAll(req, res, db)
+const getCountries = () => {
+  return countries.getAll(db)
 }
 
 const getRegions = (req, res) => {
-  return countries.getRegions(req, res, db)
+  return countries.getRegions(db)
 }
 
-const getCountriesByRegion = (req, res) => {
-  return countries.getCountriesByRegion(req, res, db)
+const getCountriesByRegion = (req) => {
+  return countries.getCountriesByRegion(req, db)
 }
 
 module.exports = {

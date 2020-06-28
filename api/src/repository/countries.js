@@ -1,19 +1,16 @@
 
 // get all from countries ( Not used )
-const getAll = (req, res, db) => {
-  console.log('test2')
-  db.select("*").table('countries')
-  .then(countries => res.send(countries))
-  .catch(err => res.status(400).json(err))
+const getAll = ( db ) => {
+  return db.select("*").table('countries')
 }
 
 // Get regions list (Used for: Line-Chart Menu)
-const getRegions = (req, res, db) => {
-  db.distinct('region as name', 'region as value',).select().table('countries')
-  .then(countries => res.send(countries))
-  .catch(err => res.status(400).json('Error getting regions'))
+const getRegions = (db) => {
+  return db.distinct('region as name', 'region as value',).select().table('countries')
 }
 
+
+// TODO: Finish this, when client is working
 // Get countries list based on region (Used for: Line-Chart Menu)
 const getCountriesByRegion = (req, res, db) => {
   db.select('country_code as value', "country_name as name")

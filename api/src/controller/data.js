@@ -2,20 +2,20 @@ const data = require('../repository/data.js');
 const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
-const getAll = (req, res) => {
-    return data.getAll(req, res, db)
+const getAll = (req) => {
+    return data.getAll(req, db)
 }
 
-const getDataByCountries = (req, res) => {
-    return data.getDataByCountries(req, res, db)
+const getDataByCountries = (req) => {
+    return data.getDataByCountries(req,  db)
 }
   
-const getRegionDataByYear = (req, res) => {
-    return data.getRegionDataByYear(req, res, db)
+const getRegionDataByYear = (req) => {
+    return data.getRegionDataByYear(req, db)
 }
 
 const getPieData = (req, res) => {
-    return data.getPieData(req, res, db)
+    return data.getPieData(req, db)
 }
   
 module.exports = {
