@@ -1,6 +1,7 @@
 
 // get all from countries ( Not used )
 const getAll = (req, res, db) => {
+  console.log('test2')
   db.select("*").table('countries')
   .then(countries => res.send(countries))
   .catch(err => res.status(400).json(err))

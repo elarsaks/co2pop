@@ -1,7 +1,6 @@
 const express = require('express');
 const countries = require('../controller/countries.js');
 
-// Import controllers and services here  
 
 const router = express.Router()
 

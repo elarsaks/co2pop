@@ -11,8 +11,9 @@ services:
     build: ./api/
     depends_on:
       - pg
-    links: 
-      - pg
+    command: "sh -c \"./wait-for co2pop_pg_1:5432 -- npm start\""
+   # links: 
+    #  - pg
     environment: 
       DB_HOST: pg
       DB_USER: postgres
@@ -23,7 +24,11 @@ services:
     networks:
       - backend
      # - frontend
-
+    restart: unless-stopped
+    volumes:
+      - "./api/src/:/app/src"
+      - "./api/package.json:/app/package.json"
+      - "./api/package-lock.json:/app/package-lock.json"
   pg:
     build:
       context: ./data
@@ -32,11 +37,11 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_DB: co2pop
     ports:
-        - 5432:5432
+      - 5432:5432
     networks:
       - backend
     volumes:
-        - postgres_data:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     
 
 volumes:

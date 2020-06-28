@@ -1,7 +1,11 @@
 FROM node:12-alpine
-WORKDIR /usr/src/app
-COPY package*.json ./
+RUN apk update && apk upgrade
+WORKDIR /app
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
+RUN chown node:node /app
+USER node
 RUN npm install
-COPY . .
+COPY --chown=node . /app
 EXPOSE 3001
-CMD [ "node", "server.js" ]
+EXPOSE 9229
