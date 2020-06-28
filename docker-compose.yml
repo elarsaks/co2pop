@@ -1,35 +1,45 @@
 version: "3.5"
 networks:
-  #frontend:
-  #  name: co2pop_frontend
-  #  driver: overlay
-  backend: 
-    name: co2pop_backend
+  co2pop_dev: 
+    name: co2pop_dev
 services:
-  api:
-    container_name: api
+  co2pop_client:
+    build:
+      context: ./client
+    command: "sh -c \"npm start\""
+    container_name: co2pop_client
+    depends_on:
+      - co2pop_api
+    ports:
+      - 8080:8080
+    networks:
+      - co2pop_dev
+    restart: unless-stopped
+    volumes:
+      - "./client/src:/app/src"
+      - "./client/package.json:/app/package.json"
+      - "./client/package-lock.json:/app/package-lock.json"
+  co2pop_api:
+    container_name: co2pop_api
     build: ./api/
     depends_on:
-      - pg
-    command: "sh -c \"./wait-for co2pop_pg_1:5432 -- npm start\""
-   # links: 
-    #  - pg
+      - co2pop_pg
+    command: "sh -c \"./wait-for co2pop_pg:5432 -- npm start\""
     environment: 
-      DB_HOST: pg
+      DB_HOST: co2pop_pg
       DB_USER: postgres
       DB_PASS: password
-      DATABASE_URL: postgres://postgres:password@pg:5432/co2pop
+      DATABASE_URL: postgres://postgres:password@co2pop_pg:5432/co2pop
     ports:
       - 3001:3001
     networks:
-      - backend
-     # - frontend
+      - co2pop_dev
     restart: unless-stopped
     volumes:
       - "./api/src/:/app/src"
       - "./api/package.json:/app/package.json"
       - "./api/package-lock.json:/app/package-lock.json"
-  pg:
+  co2pop_pg:
     build:
       context: ./data
     environment:
@@ -39,10 +49,8 @@ services:
     ports:
       - 5432:5432
     networks:
-      - backend
+      - co2pop_dev
     volumes:
       - postgres_data:/var/lib/postgresql/data
-    
-
 volumes:
   postgres_data: 

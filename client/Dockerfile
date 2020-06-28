@@ -7,4 +7,4 @@ RUN chown node:node /app
 USER node
 RUN npm install
 COPY --chown=node . /app
-EXPOSE 3001
+EXPOSE 8080

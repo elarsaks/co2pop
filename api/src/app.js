@@ -24,15 +24,15 @@ app.use(cors());
 app.use(router)
 
 
-/*
 
+/*
 // Local imports
 const countriesTable = require('../db/countriesTable.js');
 const dataTable = require('../db/dataTable.js');
 
 // Setup Database
 ( function setUpTables() {
-  setTimeout( () => { dataTable.create(db) }, 1000);
+  setTimeout( () => { countriesTable.insert(db) }, 1000);
   setTimeout( () => { dataTable.insertPop(db) }, 1500);
   setTimeout( () => { dataTable.insertEm(db) }, 9000);
 })()
@@ -42,7 +42,7 @@ const dataTable = require('../db/dataTable.js');
 app.listen(port, function() {
   console.log("listening on port:", port);
 })
-
+ 
 /*
 
 // Update DB on 27.th of each month
