@@ -17,12 +17,11 @@ router.get('/regions', (req, res)=> {
     .catch(err => res.status(400).json('Error getting regions'))
 });
 
-// TODO: Finish this, when client is working
 // Get countries for Line-chart Menu
-router.get('/countries/:region/name&code/', (req, res)=> { 
-    countries.getCountriesByRegion(req, )
+router.get('/:region/name&code/', (req, res)=> { 
+    countries.getCountriesByRegion(req )
     .then(resp => res.status(200).send(resp))
-    .catch(err => res.status(400).json(''))
+    .catch(err => res.status(400).json('Error getting countries'))
 });
 
 module.exports = router;

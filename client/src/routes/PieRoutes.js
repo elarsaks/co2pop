@@ -23,7 +23,8 @@ module.exports = {
 
   // Fetch data for Pie-Chart
   getPie: (group, indicator, year) => {
-    return fetch('http://127.0.0.1:8000/piedata/' + group + '/' + indicator + '/' + year)
+    console.log(group, indicator, year)
+    return fetch('http://127.0.0.1:3001/data/piedata/' + group + '/' + indicator + '/' + year)
     .then((response) => response.json())
     .then((data) => {
 
