@@ -3,26 +3,6 @@ const fetch = require('node-fetch');
 const parseString = require('xml2js').parseString;
 
 // _____________________________________________________________________________
-// CREATE DATA TABLE
-//¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-exports.create = (db, Promise,) => {
-  return db.schema.createTable('data', function(table) {
-    table.string('country_code').references('country_code').inTable('countries');
-    table.integer('year');
-    table.integer('population');
-    table.float('emission');
-    table.unique(['year', 'country_code']).primary(['year', 'country_code']);
-  })
-  .then(console.log('Table "data" was created'))
-}
-
-exports.drop = (db) => {
-  return db.schema.dropTable('data')
-  .then(console.log('Table "data" was dropped'))
-  .catch(error => console.log(error))
-}
-
-// _____________________________________________________________________________
 // INSERT POPULATIONS DATA
 //¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 exports.insertPop = (db) => {
