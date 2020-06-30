@@ -1,4 +1,4 @@
-const data = require('../repository/data.js');
+const data = require('../repository/postgres/data.js');
 const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
