@@ -5,6 +5,7 @@ const data = require('./data.js');
 
 // Remove it after populate func is ready
 const countriesController = require('../controller/countries.js');
+const dataController = require('../controller/data.js');
 
 // Provide information about API links
 router.get('/', (req, res) => {
@@ -25,21 +26,29 @@ router.get('/', (req, res) => {
 })
 
 router.get('/populate', (req, res) => {
+/*
+  // Use this for testing
+  const countryCodes = [
+    { country_code: 'ABW' },
+    { country_code: 'AFG' },
+    { country_code: 'AGO' },
+  ]
 
-  // TODO: Rejection handling
+  dataController.insertPopulations(countryCodes)
+*/
   countriesController.getCountries()
-  .then(resp => new Promise((resolve, reject) => {
-      return resp.length < 1
-        ? resolve(countriesController.populateCountries())
+  .then(countries => new Promise((resolve, reject) => {
+      return countries.length < 1
+        ? resolve(countriesController.insertCountries()
+          .then(countryCodes => dataController.insertPopulations(countryCodes))
+          .then(()=> console.log('Insert emissions')))
         : reject({ msg: "Database is already populated."})
     })
   )
-  .then(resp => {
-    console.log('_________________ Countries added!_________________________')
-    res.send(resp)
-  })
   .catch(reject => res.send(reject))
-})
+}) 
+
+
 
 router.use('/countries', countries )
 router.use('/data', data )

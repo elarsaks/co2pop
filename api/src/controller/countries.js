@@ -2,7 +2,7 @@ const postgres = require('../repository/postgres/countries.js');
 const config = require('../config/knexfile.js');
 const db = require('knex')(config.development);
 
-const worldbank = require('../repository/worldbank/countries.js');
+const worldbank = require('../repository/worldbank.js');
 const filter = require('../services/filter.js');
 
 const getCountries = () => {
@@ -18,25 +18,22 @@ const getRegions = (req) => {
   return postgres.getRegions(db)
 }
 
-const populateCountries = () => { 
+const insertCountries = () => { 
+  console.log('_________________ Insert countries!_________________________')
   return worldbank.fetchCountries()
   .then(countries => filter.countries(countries))
   .then(countries => countries.map(country => postgres.putCountry(country, db)))
   .then(resp => Promise.all(resp))
+  .then(countryCodes => {
+    console.log('_________________ Countries added!_________________________')
+    return countryCodes
+  })
   .catch(err => console.log(err))
-
-  /*
-  .then(countries => countries.forEach(country => {
-    postgres.putCountry(country, db)
-    .then(() => console.log(`Insert into countries: ${country.country_code} ${country.country_name}`))
-    .catch(err => console.log(err))
-  }))
-  */
 }
 
 module.exports = {
   getCountries,
   getCountriesByRegion,
   getRegions,
-  populateCountries,
+  insertCountries,
 }
