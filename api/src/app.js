@@ -21,22 +21,24 @@ app.use(cors());
 
 app.use(router)
 
-router.get('/populate', (req, res) => {
-  countriesController.getCountries()
-  .then(countries => new Promise((resolve, reject) => {
-      return countries.length < 1
-        ? resolve(countriesController.insertCountries()
-          .then(countryCodes => {
-            return dataController.insertPopulations(countryCodes)
-              .then(() => countryCodes)
-          })
-          .then(() => dataController.insertEmissions(countryCodes))
-          )
-        : reject({ msg: "Database is already populated."})
-    })
-  )
-  .catch(reject => res.send(reject))
-}) 
+// Check if countries tabel has data, if not, populate database
+// NOTE: If something happens with connection during DB population: 
+// Manually delete data from countries and data table and re-start application again.
+countriesController.getCountries()
+.then(countries => new Promise((resolve, reject) => {
+    return countries.length < 1
+      ? resolve(countriesController.insertCountries()
+        .then(countryCodes => {
+          return dataController.insertPopulations(countryCodes)
+            .then(() => countryCodes)
+        })
+        .then(countryCodes => dataController.insertEmissions(countryCodes))
+        .then(() => console.log('DB is populated and application is ready for use!'))
+        )
+      : reject('DB is populated and application is ready for use!')
+  })
+)
+.catch(reject => console.log(reject))
 
 app.listen(port, function() {
   console.log("listening on port:", port);
