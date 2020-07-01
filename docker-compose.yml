@@ -10,11 +10,11 @@ services:
     container_name: co2pop_client
     depends_on:
       - co2pop_api
-    ports:
-      - 8080:8080
     networks:
       - co2pop_dev
     restart: unless-stopped
+    ports:
+      - 8080:8080
     volumes:
       - "./client/src:/app/src"
       - "./client/package.json:/app/package.json"
@@ -30,11 +30,11 @@ services:
       DB_USER: postgres
       DB_PASS: password
       DATABASE_URL: postgres://postgres:password@co2pop_pg:5432/co2pop
-    ports:
-      - 3001:3001
     networks:
       - co2pop_dev
     restart: unless-stopped
+    ports:
+      - 3001:3001
     volumes:
       - "./api/src/:/app/src"
       - "./api/package.json:/app/package.json"
@@ -46,11 +46,12 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: postgres
       POSTGRES_DB: co2pop
-    ports:
-      - 5432:5432
     networks:
       - co2pop_dev
+    restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
 volumes:
   postgres_data: 
