@@ -4,6 +4,9 @@ This project serves as an example of my skills as a developer. It is a full-stac
 
 In 2020, I re-factored some code and containerized the application into Docker microservices.
 
+(IMAGE IS NOT ACCURATE AND WILL BE UPDATED)
+<img src="https://co2pop.s3.eu-north-1.amazonaws.com/Project+Architecture.png" />
+
 ## Setup and Running
 To test the application, you must have Docker and Docker-compose installed.
 
@@ -11,9 +14,6 @@ To test the application, you must have Docker and Docker-compose installed.
   2. cd co2pop
   3. run 'docker-compose up --build' in project root
   4. when the application is installed and DB populated, you can test it on http://localhost:8080
-
-(IMAGE IS NOT ACCURATE AND WILL BE UPDATED)
-<img src="https://co2pop.s3.eu-north-1.amazonaws.com/Project+Architecture.png" />
 
   ## Screenshots
 <table>
