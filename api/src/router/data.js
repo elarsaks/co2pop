@@ -12,7 +12,6 @@ router.get('/', (req, res)=> {
 
 // Bar-chart
 router.get('/region/:year', (req, res)=> { 
-    console.log('calls')
     data.getRegionDataByYear(req)
     .then(resp => res.status(200).send(resp))
     .catch(err => res.status(400).json('Error getting data'))

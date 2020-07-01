@@ -22,58 +22,32 @@ const getPieData = (req, res) => {
 }
 
 const insertEmissions = (countries) => { 
-
-    // TODO: take promises from here to functions
-
     console.log('_________________ Insert emissions!_________________________')
 
     // Fetch population data for all the countries
-   return Promise.all(
-       countries.map(country =>
-        worldbank.fetchEmissions(country.country_code)))
-
+   return Promise.all( countries.map(country => worldbank.fetchEmissions(country.country_code)))
     // Clean fetched data
-    .then(data => 
-        Promise.all(data.map(country => 
-            filter.emissions(country))))
-     
+    .then(data => Promise.all(data.map(country => filter.emissions(country))))
     // Map data to a single countries
-    .then(countries => 
-        Promise.all(countries.map(country =>
-
-            // Insert each countries data, 1 year at the time
-             Promise.all(country.map(year => 
-                postgres.insertEmissions(year, db)))
+    .then(countries => Promise.all(countries.map(country =>
+        // Insert each countries data, 1 year at the time
+        Promise.all(country.map(year => postgres.insertEmissions(year, db)))
     )))
     .then(() => console.log('_________________ Emissions added!_________________________'))
     .catch(err => console.log(err)) 
   }
 
 const insertPopulations = (countries) => { 
-
-    let countryCodes = countries
-
-    // TODO: take promises from here to functions
-
     console.log('_________________ Insert populations!_________________________')
 
     // Fetch population data for all the countries
-   return Promise.all(
-       countries.map(country =>
-        worldbank.fetchPopulations(country.country_code)))
-    
+   return Promise.all( countries.map(country => worldbank.fetchPopulations(country.country_code)))
     // Clean fetched data
-    .then(data => 
-        Promise.all(data.map(country => 
-            filter.populations(country))))
-    
+    .then(data => Promise.all(data.map(country => filter.populations(country))))
     // Map data to a single countries
-    .then(countries => 
-        Promise.all(countries.map(country =>
-
-            // Insert each countries data, 1 year at the time
-             Promise.all(country.map(year => 
-                postgres.insertPopulations(year, db)))
+    .then(countries => Promise.all(countries.map(country =>
+        // Insert each countries data, 1 year at the time
+        Promise.all(country.map(year => postgres.insertPopulations(year, db)))
     )))
     .then(() => console.log('_________________ Populations added!_________________________'))
     .catch(err => console.log(err)) 
