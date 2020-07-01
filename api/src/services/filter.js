@@ -33,6 +33,29 @@ const countries = (data) => {
 }
 
 
+const emissions = (rawData) => {
+
+  let cleanedData;
+  let years = [];
+
+  parseString(rawData, (err, result) => {
+    cleanedData = result['wb:data']['wb:data']
+  })
+
+  // TODO: Find out 'undefined' country error
+  if(cleanedData){
+    cleanedData.forEach(year => {
+      years.push({
+        country_code:  year['wb:countryiso3code'][0],
+        year: year['wb:date'][0],
+        emission: parseInt(year['wb:value']) || 0 ,
+      })
+    })
+  }
+  
+  return years
+}
+
 const populations = (rawData) => {
 
   let cleanedData;
@@ -58,5 +81,6 @@ const populations = (rawData) => {
 
 module.exports = {
     countries,
+    emissions,
     populations,
 }

@@ -3,57 +3,6 @@ const fetch = require('node-fetch');
 const parseString = require('xml2js').parseString;
 
 // _____________________________________________________________________________
-// INSERT POPULATIONS DATA
-//¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-exports.insertPop = (db) => {
-
-  // Get country_code
-  db.select('country_code').table('countries')
-  .then(async response => {
-
-    // Loop through countries
-    await response.forEach( (element, i) => {
-      let countryCode = element.country_code;
-
-      // Fetch population data for each country
-      fetch('http://api.worldbank.org/v2/countries/' + countryCode + '/indicators/SP.POP.TOTL?per_page=100')
-      .then(res => res.text())
-
-      // Convert XML into JS Object
-      .then(rawData => {
-        var cleanedData;
-        parseString(rawData, (err, result) => { cleanedData = result['wb:data']['wb:data']})
-        return cleanedData
-      })
-
-      // Loop through years of data
-      .then(async  data => {
-        data.forEach( async (element, i) => {
-
-          // Insert single year data into database
-          await db('data')
-          .insert({
-            country_code:  element['wb:countryiso3code'][0],
-            year: element['wb:date'][0],
-            population: parseInt(element['wb:value']) || 0 ,
-          })
-
-          // log on console after each year
-          //.then( response => console.log('Added ', countryCode,' ', element['wb:date'][0], ' populations data'))
-          .catch(error => console.log('DB entry failed',  error))
-
-          // log on console after each country
-          if(i + 1 == data.length) {
-            console.log('Added ' + countryCode + ' populations')
-          }
-
-        })
-      })
-    })
-  })
-}
-
-// _____________________________________________________________________________
 // INSERT EMISSIONS DATA
 //¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
 exports.insertEm = (db) => {

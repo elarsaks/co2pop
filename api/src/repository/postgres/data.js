@@ -33,9 +33,17 @@ const getPieData = (req, db) => {
   .orderBy(req.params.group, 'asc')
 }
 
+const insertEmissions = (year, db) => {
+  return db('data')
+  .where({ country_code: year.country_code, year: year.year })
+  .update({ emission: year.emission })
+  .then(() => console.log(`Insert ${year.country_code} year ${year.year} emission: ${year.emission}`))
+}
+
 const insertPopulations = (year, db) => {
-  return db('data').insert(year)
-  .then(() => console.log(`Insert ${year.country_code} year ${year.year} population.`))
+  return db('data')
+  .insert(year)
+  .then(() => console.log(`Insert ${year.country_code} year ${year.year} population: ${year.population}`))
 }
 
 module.exports = {
@@ -43,5 +51,6 @@ module.exports = {
   getDataByCountries,
   getPieData,
   getRegionDataByYear,
+  insertEmissions,
   insertPopulations,
 }

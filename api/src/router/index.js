@@ -26,7 +26,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/populate', (req, res) => {
-/*
+
   // Use this for testing
   const countryCodes = [
     { country_code: 'ABW' },
@@ -34,14 +34,18 @@ router.get('/populate', (req, res) => {
     { country_code: 'AGO' },
   ]
 
-  dataController.insertPopulations(countryCodes)
-*/
+  //dataController.insertPopulations(countryCodes)
+
   countriesController.getCountries()
   .then(countries => new Promise((resolve, reject) => {
       return countries.length < 1
         ? resolve(countriesController.insertCountries()
-          .then(countryCodes => dataController.insertPopulations(countryCodes))
-          .then(()=> console.log('Insert emissions')))
+          .then(countryCodes => {
+            return dataController.insertPopulations(countryCodes)
+              .then(() => countryCodes)
+          })
+          .then(() => dataController.insertEmissions(countryCodes))
+          )
         : reject({ msg: "Database is already populated."})
     })
   )
