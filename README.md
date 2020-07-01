@@ -1,96 +1,18 @@
 # co2pop
 
-This project serves as an example of my current skills in JavaScript. It is a full-stack JavaScript application, displaying world population and emissions data. The project uses React Redux on the front end side and Node JS on the back end. Node Express server API fetches data from World Bank API and uses Knex JS library to feed it to the Postgre SQL database,
+This project serves as an example of my skills as a developer. It is a full-stack JavaScript application, displaying world population and emissions data. I built it in 2019, using React, Redux, Node, and PostgreSQL. In 2020, I re-factored some code and containerized the application into Docker microservices.
 
+(IMAGE IS NOT ACCURATE AND WILL BE UPDATED)
 <img src="https://co2pop.s3.eu-north-1.amazonaws.com/Project+Architecture.png" />
-
-## Core Structure
-    co2pop
-      ├── back
-      │     > controllers   
-      │     > db            
-      │     > node_modules  
-      |       knexfile.js   
-      |       package-lock.json
-      |       package.json
-      |       server.js     
-      │
-      ├── front
-      │   │   > node_modules
-      │   │   > public
-      │   │   > src
-      │   │      │
-      │   │      └─ > components
-      │   │         > redux
-      │   │         > routes
-      │   │           App.js
-      │   │           App.test.js
-      │   │           index.css
-      │   │           index.js
-      │   │           serviceWorker.js
-      │   │
-      │   └──   package-lock.json
-      │         package.json
-      │         README.md
-      │         yarn-error.log
-      │         yarn.lock
-      │
-      └── README.md (you are here)
-
-
-## Stack
-| Frontend             |   Backend    |  Database     |
-| :---                 |     :---:    |    ---:       |
-|  React               |  Node JS     |  Postgre SQL  |
-|  Material UI         |  Express     |               |
-|  Redux               |  Knex JS     |               |
-|  Re-charts           |  Node-cron   |               |
-|  Redux-logger        |  Node-fetch  |               |
-|                      |  Xml2js      |               |
-
 
 ## Setup and Running
 - Prerequisites
-    - Node
-    - React
-    - Postgre SQL
+    - Docker
 
-- **Database**
-    - Open Postgre SQL in your prefered way (PgAdmin / Terminal)
-    - Create a database named 'co2pop'
-    
- <table>
-  <tbody>
-    <tr>
-      <td>
-         <img src="https://co2pop.s3.eu-north-1.amazonaws.com/DB+diagram.png" />
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-- **Back-end**
-    - Switch to `back-end` directory `cd co2pop/back`
-    - Install dependancies `npm install`
-    - Configuration
-        - Open Knex configuration file `co2pop/back/knexfile.js`
-        - Modify `knexfile.js` to match DB configurations
-            - `client` (`pg`)
-            - `host` (`127.0.0.1`)
-            - `user` (`your username`)
-            - `password` (`your password`)
-            - `database` (`co2pop`)
-
-    - Open `co2pop/back/knexfile.js`
-    - Start API server `npm start`
-
-- **Front-end**
-    - Switch to `front-end` directory `cd co2pop/front`
-    - Install dependancies `npm install`
-    - Start the client application `npm start`
+- Installation
+    - Run: 'docker-compose up --build' command from project root.
 
   ## Screenshots
-
 <table>
   <tbody>
     <tr>
@@ -132,7 +54,7 @@ This project serves as an example of my current skills in JavaScript. It is a fu
 </table>
 
 ## License
-Copyright (c) 2019 Elar Saks https://github.com/elarsaks
+Copyright (c) 2020 Elar Saks https://github.com/elarsaks
 
 The MIT License (http://www.opensource.org/licenses/mit-license.php)
  
