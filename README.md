@@ -4,8 +4,7 @@ This project serves as an example of my skills as a developer. It is a full-stac
 
 In 2020, I re-factored some code and containerized the application into Docker microservices.
 
-(IMAGE IS NOT ACCURATE AND WILL BE UPDATED)
-<img src="https://co2pop.s3.eu-north-1.amazonaws.com/Project+Architecture.png" />
+<img src="http://co2pop.s3.eu-north-1.amazonaws.com/architecture.png" />
 
 ## Setup and Running
 To test the application, you must have Docker and Docker-compose installed.
