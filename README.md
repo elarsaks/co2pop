@@ -7,7 +7,7 @@ In 2020, I re-factored some code and containerized the application into Docker m
 ## Setup and Running
 To test the application, you must have Docker and Docker-compose installed.
 
-  1. download co2op from GitHub
+  1. download co2pop from GitHub
   2. cd co2pop
   3. run 'docker-compose up --build' in project root
   4. when the application is installed and DB populated, you can test it on http://localhost:8080
