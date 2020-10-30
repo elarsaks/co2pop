@@ -63,7 +63,6 @@ class ChartMenu extends React.Component {
 
   // Update the menu
   handleChange = async (event) => {
-    console.log(event)
     await this.setState({ [event.target.name]: event.target.value })
     await this.selector('secondSelector', lineRoutes.name(this.state.firstSelected))
 
