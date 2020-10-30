@@ -50,11 +50,20 @@ class ChartMenu extends React.Component {
 
   // Set the initial menu when the page loads
   componentDidMount() {
-    this.selector('firstSelector', lineRoutes.regions);
+    this.selector('firstSelector', lineRoutes.regions)
+    .then(regions => {
+      this.handleChange({target:{ value: this.state.firstSelector[0].props.value, name: "firstSelected" }} )
+      return this.state.firstSelected
+    })
+    .then(region => {
+      this.handleChange({target:{ value: "ARE", name: "secondSelected" }} )
+      return this.state.firstSelected
+    })
   }
 
   // Update the menu
   handleChange = async (event) => {
+    console.log(event)
     await this.setState({ [event.target.name]: event.target.value })
     await this.selector('secondSelector', lineRoutes.name(this.state.firstSelected))
 
