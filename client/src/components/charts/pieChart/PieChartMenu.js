@@ -85,6 +85,8 @@ class PieChartMenu extends React.Component {
   // Set the first selector when the page loads
   componentDidMount() {
     this.selector('firstSelector', pieRoutes.groups);
+    this.handleChange({ target: { value: "region", name: "firstSelected" }})
+    this.handleChange({ target: { value: "population", name: "secondSelected" }})
   }
 
   // Update the menu
