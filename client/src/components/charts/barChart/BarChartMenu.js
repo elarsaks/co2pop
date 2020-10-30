@@ -45,7 +45,6 @@ class PieChartMenu extends React.Component {
 
   // Update state and fetch data
   handleChange = (event, value) => {
-    console.log(value)
     this.setState({ value });
     barRoutes.getBar(value).then( data => { this.props.barChart(data) })
   };
